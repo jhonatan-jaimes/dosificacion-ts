@@ -2,80 +2,80 @@ export interface Dosificacion {
   getMaterial(): any;
 }
 
-export class Mortero implements Dosificacion {
-  private tipo:     string;
-  private cemento:  number;
-  private arena:    number;
-  private agua:     number;
+export class Mortar implements Dosificacion {
+  private type:    string;
+  private cement:  number;
+  private sand:    number;
+  private water:   number;
 
   constructor(
-    tipo:           string, 
-    cemento:        number, 
-    arena:          number, 
-    agua:           number
+    type:          string, 
+    cemento:       number, 
+    sand:          number, 
+    water:         number
   ) {
-    this.tipo =     tipo;
-    this.cemento =  cemento;
-    this.arena =    arena;
-    this.agua =     agua;
+    this.type =    type;
+    this.cement =  cemento;
+    this.sand =    sand;
+    this.water =   water;
   }
   getMaterial(): any {
     return this;
   }
 
-  getTipo(): string {
-    return this.tipo;
+  getType(): string {
+    return this.type;
   }
 
-  getCemento(): number {
-    return this.cemento;
+  getCement(): number {
+    return this.cement;
   }
 
-  getArena(): number {
-    return this.arena;
+  getSand(): number {
+    return this.sand;
   }
 
-  getAgua(): number {
-    return this.agua;
+  getWater(): number {
+    return this.water;
   }
 
-  setTipo(tipo: string): void {
-    this.tipo = tipo;
+  setType(type: string): void {
+    this.type = type;
   }
 
-  setCemento(cemento: number): void {
-    this.cemento = cemento;
+  setCement(cement: number): void {
+    this.cement = cement;
   }
 
-  setArena(arena: number): void {
-    this.arena = arena;
+  setSand(sand: number): void {
+    this.sand = sand;
   }
 
-  setAgua(agua: number): void {
-    this.agua = agua;
+  setWater(water: number): void {
+    this.water = water;
   }
   
 }
 
-export class Concreto extends Mortero {
-  private grava: number;
+export class Concrete extends Mortar {
+  private gravel: number;
 
   constructor(
-    tipo:        string,
-    cemento:     number,
-    arena:       number,
-    grava:       number,
-    agua:        number
+    type:         string,
+    cement:       number,
+    sand:         number,
+    gravel:       number,
+    water:        number
   ) {
-    super(tipo, cemento, arena, agua);
-    this.grava = grava;
+    super(type, cement, sand, water);
+    this.gravel = gravel;
   }
 
-  getGrava(): number {
-    return this.grava;
+  getGravel(): number {
+    return this.gravel;
   }
 
-  setGrava(grava: number): void {
-    this.grava = grava;
+  setGravel(gravel: number): void {
+    this.gravel = gravel;
   }
 }

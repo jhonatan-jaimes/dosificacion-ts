@@ -1,15 +1,22 @@
-import { Concreto } from "../utils";
-import { Dosificacion, Mortero } from "../utils/insumos";
+import { Concrete, Mortar, Dosificacion, Transform } from "../utils";
 
-export function mortero(table: Dosificacion, area: number, tipo: string){
-  const cemento = area * table.getMaterial().getCemento();
-  const arena =   area * table.getMaterial().getArena();
-  const agua =    area * table.getMaterial().getAgua();
-  return new Mortero(tipo, cemento, arena, agua);
+function convertirToMili(num: number){
+  return Transform.MILIMETROS * num;
 }
 
-export function concreto(table: Dosificacion, area: number, tipo: string){
-  const morte = mortero(table, area, tipo);
+function convertirToMetr(num: number){
+  return num / Transform.MILIMETROS2;
+}
+
+export function mortar(table: Mortar, area: number, type: string){
+  const cemento = convertirToMetr(convertirToMili(area) * convertirToMili(table.getMaterial().getCement()));
+  const arena =   convertirToMetr(convertirToMili(area) * convertirToMili(table.getMaterial().getSand()));
+  const agua =    convertirToMetr(convertirToMili(area) * convertirToMili(table.getMaterial().getWater()));
+  return new Mortar(type, cemento, arena, agua);
+}
+
+export function concrete(table: Concrete, area: number, type: string){
+  const morte = mortar(table, area, type);
   const grava = area * table.getMaterial().getGrava();
-  return new Concreto(tipo, morte.getCemento(), morte.getArena(), grava, morte.getAgua());
+  return new Concrete(type, morte.getCement(), morte.getSand(), grava, morte.getWater());
 }

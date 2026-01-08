@@ -1,15 +1,15 @@
-import { Recurso, table } from "../utils";
-import { concreto, mortero } from "./dosificacion";
+import { Concrete, Mortar, Recurso, table } from "../utils";
+import { concrete, mortar } from "./dosificacion";
 
 export class Material {
-  calcular(area: number, dosi: string, tipo: string){
-    const tabla = table(dosi, tipo);
-    if (tipo == Recurso.CONCRETO){
-      return concreto(tabla, area, tipo);
-    } else if (tipo == Recurso.MORTERO){
-      return mortero(tabla, area, tipo);
+  calcular(area: number, dosi: string, type: string){
+    const tabla = table(dosi, type);
+    if (type == Recurso.CONCRETO){
+      return concrete(tabla as Concrete, area, type);
+    } else if (type == Recurso.MORTERO){
+      return mortar(tabla as Mortar, area, type);
     } else {
-      throw new Error("No se encontro el tipo");
+      throw new Error("Type don't found");
     }
   }
 }
